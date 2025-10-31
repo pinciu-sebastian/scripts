@@ -1,7 +1,7 @@
 #!/bin/bash
 
-set -e  # Exit immediately if a command exits with a non-zero status
-set -u  # Treat unset variables as an error
+set -e  # Exit on error
+set -u  # Treat unset vars as error
 
 echo "🔧 Updating package list..."
 sudo apt update
@@ -21,4 +21,15 @@ sudo snap install microceph
 echo "⏸️ Holding MicroCeph updates..."
 sudo snap refresh --hold microceph
 
-echo "✅ MicroCeph installation complete and updates are held."
+echo "✅ MicroCeph installed and updates are held."
+
+# 🔎 Check MicroCeph version
+echo "📌 Checking MicroCeph version..."
+MICROCEPH_VERSION=$(snap info microceph | grep installed | awk '{print $2}')
+
+if [[ -n "$MICROCEPH_VERSION" ]]; then
+    echo "✅ MicroCeph is installed. Version: $MICROCEPH_VERSION"
+else
+    echo "❌ Could not determine MicroCeph version."
+    exit 1
+fi
