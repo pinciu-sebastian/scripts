@@ -25,7 +25,7 @@ echo "✅ MicroCeph installed and updates are held."
 
 # 🔎 Check MicroCeph version
 echo "📌 Checking MicroCeph version..."
-MICROCEPH_VERSION=$(snap info microceph | grep installed | awk '{print $2}')
+MICROCEPH_VERSION=$(sudo microceph --version | awk '{print $2}')
 
 if [[ -n "$MICROCEPH_VERSION" ]]; then
     echo "✅ MicroCeph is installed. Version: $MICROCEPH_VERSION"
