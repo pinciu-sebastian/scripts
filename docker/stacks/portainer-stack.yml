@@ -3,7 +3,7 @@ version: '3.8'
 services:
   portainer:  
     image: portainer/portainer-ce:lts
-    command: >
+    entrypoint: >
       sh -c "while [ ! -d /data ]; do echo 'Waiting for /data to be mounted...'; sleep 3; done;
              exec /portainer -H tcp://tasks.portainer_agent:9001 --tlsskipverify"
     ports:
