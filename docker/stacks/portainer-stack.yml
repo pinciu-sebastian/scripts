@@ -10,6 +10,11 @@ services:
       - target: 9443
         published: 9443
         mode: host
+    environment:
+      - TZ=Europe/Bucharest
+    secrets:
+      - source: portainer_admin_password
+        target: portainer_admin_password
     volumes:
       - type: bind
         source: /data/shared/portainer_data
@@ -78,4 +83,8 @@ networks:
     driver: overlay
     attachable: false
     encrypted: true
+
+secrets:
+  portainer_admin_password:
+    file: /data/shared/portainer_admin_password
 
