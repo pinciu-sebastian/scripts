@@ -2,6 +2,7 @@
 set -e
 
 echo "[INFO] Installing ceph-common package..."
+sudo apt update
 sudo apt install -y ceph-common
 
 echo "[INFO] Generating /etc/ceph/ceph.conf..."
