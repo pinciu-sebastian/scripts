@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  portainer:  
+    image: portainer/portainer-ce:lts
+    ports:
+      - target: 9443
+        published: 9443
+        mode: host
+    environment:
+      - TZ=Europe/Bucharest
+    volumes:
+      - type: bind
+        source: /data/shared/portainer_simple_data
+        target: /data
+      - type: bind
+        source: /var/run/docker.sock
+        target: /var/run/docker.sock
+        read_only: true
+    networks:
+      - agent_network
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+      restart_policy:
+        condition: on-failure
