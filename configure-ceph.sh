@@ -41,6 +41,8 @@ Wants=network-online.target
 Type=oneshot
 ExecStart=/usr/local/bin/mount-cephfs.sh
 RemainAfterExit=true
+Restart=on-failure
+RestartSec=15
 
 [Install]
 WantedBy=multi-user.target
@@ -51,3 +53,4 @@ sudo systemctl daemon-reload
 sudo systemctl enable --now mount-cephfs.service
 
 echo "[DONE] CephFS is configured and mounted."
+sudo df -h
