@@ -2,6 +2,7 @@
 set -e
 
 echo "[INFO] Generating /etc/ceph/ceph.conf..."
+sudo mkdir -p /etc/ceph
 sudo microceph.ceph config generate-minimal-conf > /etc/ceph/ceph.conf
 
 echo "[INFO] Writing /etc/ceph/ceph.client.admin.keyring..."
