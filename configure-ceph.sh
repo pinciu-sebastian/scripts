@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e
 
+echo "[INFO] Installing ceph-common package..."
+sudo apt install -y ceph-common
+
 echo "[INFO] Generating /etc/ceph/ceph.conf..."
 sudo mkdir -p /etc/ceph
 sudo microceph.ceph config generate-minimal-conf > /etc/ceph/ceph.conf
